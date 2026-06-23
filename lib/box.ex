@@ -5,7 +5,11 @@ defmodule RipplingBoxSync.Box do
     "#{last_name}, #{first_name} - #{associate_id}"
   end
 
-  def create_employee_folder(%Employee{first_name: first_name, last_name: last_name, associate_id: associate_id}) do
+  def create_employee_folder(%Employee{
+        first_name: first_name,
+        last_name: last_name,
+        associate_id: associate_id
+      }) do
     folder_name = build_folder_name(first_name, last_name, associate_id)
     folder_path = Path.join("box_storage", folder_name)
     File.mkdir_p!(folder_path)
@@ -17,4 +21,18 @@ defmodule RipplingBoxSync.Box do
     File.write!(file_path, content)
   end
 
+  def create_retry_folder(
+        %Employee{
+          first_name: first_name,
+          last_name: last_name,
+          associate_id: associate_id
+        },
+        reason
+      ) do
+    retry_folder_name = build_folder_name(first_name, last_name, associate_id)
+    retry_folder_path = Path.join("box_storage/_retry", retry_folder_name)
+    File.mkdir_p!(retry_folder_path)
+    upload_file(retry_folder_path, %{filename: "error.txt", content: reason})
+    retry_folder_path
+  end
 end
