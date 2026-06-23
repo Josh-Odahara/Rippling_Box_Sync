@@ -1,6 +1,4 @@
 defmodule RipplingBoxSync.Box do
-  alias RipplingBoxSync.Rippling
-
   def build_folder_name(first_name, last_name, associate_id) do
     "#{last_name}, #{first_name} - #{associate_id}"
   end
