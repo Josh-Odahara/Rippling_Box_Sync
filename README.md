@@ -17,7 +17,7 @@ Scans each employee's already-synced documents directly off disk and identifies 
 This project was inspired by an internal tool idea that used real Rippling and Box API access. Since this version doesn't have access to either, both integrations are mocked behind the same function contracts a real integration would use (fetch_employee_docs/1, create_employee_folder/1, upload_file/2, etc.) — Box is simulated as local folders under box_storage/, and Rippling is simulated with realistic mock data. Swapping in real API calls later would mean rewriting the inside of these functions, not anything that calls them.
 
 ## Project structure
-
+```
 rippling_box_sync/
 ├── employees.csv              # sample employee data (associate_id, first_name, last_name, department)
 ├── lib/
@@ -38,7 +38,7 @@ rippling_box_sync/
 └── box_storage/                # local stand-in for Box (created at runtime)
     ├── _retry/                 # employees whose sync failed land here
     └── I9_files/                # I-9-related documents land here, organized per employee
-
+```
 ## Usage
 
 mix deps.get
