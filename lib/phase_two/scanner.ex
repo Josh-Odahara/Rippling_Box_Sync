@@ -1,9 +1,9 @@
 defmodule RipplingBoxSync.PhaseTwo.Scanner do
   alias RipplingBoxSync.PhaseTwo.Keywords
 
+  @spec score_doc(%{:content => binary(), :filename => binary(), optional(any()) => any()}) ::
+          non_neg_integer()
   def score_doc(%{
-        doc_type: _doc_type,
-        extension: _extension,
         filename: filename,
         content: content
       }) do
@@ -25,7 +25,7 @@ defmodule RipplingBoxSync.PhaseTwo.Scanner do
     filename_count + content_count
   end
 
- def i9_related?(doc) do
-   score_doc(doc) >= 3
- end
+  def i9_related?(doc) do
+    score_doc(doc) >= 3
+  end
 end
