@@ -1,6 +1,7 @@
 defmodule RipplingBoxSync.PhaseOne.Sync do
   alias RipplingBoxSync.Rippling
   alias RipplingBoxSync.Box
+  alias RipplingBoxSync.CSVParser
 
   def sync_employee(%Employee{
         first_name: _first_name,
@@ -16,5 +17,10 @@ defmodule RipplingBoxSync.PhaseOne.Sync do
             Box.create_retry_folder(employee, reason)
         end
       end
+
+  def run(csv_path) do
+    employees = CSVParser.parse(csv_path)
+    Enum.each(employees, fn employee -> sync_employee(employee) end)
+  end
 
 end
