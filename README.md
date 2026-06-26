@@ -37,10 +37,10 @@ box_storage/ is a local filesystem stand-in for Box. No real Box API integration
 
 ## Future improvements
 
-Real Box API integration, replacing the local filesystem mock.
-Real Rippling API integration, replacing the mocked document data.
-PDF text extraction for scanning real document content instead of mock strings.
-Have Scanner.score_doc/1 return which keywords matched (not just the count), to make scoring decisions explainable rather than just a number.
-Per-employee retry folders that preserve any documents that succeeded before a failure, rather than just logging the reason.
-Configurable/toggleable failure simulation for testing, rather than relying on real data conditions.
-mix sort (Phase 2 orchestration) — not yet built.
+- Real Box API integration, replacing the local filesystem mock.
+- Real Rippling API integration, replacing the mocked document data.
+- PDF text extraction for scanning real document content instead of mock strings.
+- Have Scanner.score_doc/1 return which keywords matched (not just the count), to make scoring decisions explainable rather than just a number.
+- Per-employee retry folders that preserve any documents that succeeded before a failure, rather than just logging the reason.
+- Configurable/toggleable failure simulation for testing, rather than relying on real data conditions.
+- mix sort (Phase 2 orchestration) — not yet built.
