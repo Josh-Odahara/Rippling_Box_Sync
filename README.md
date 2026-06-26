@@ -16,27 +16,6 @@ Scans already-synced documents and identifies I-9-related files — including un
 
 This project was inspired by an internal tool idea that used real Rippling and Box API access. Since this version doesn't have access to either, both integrations are mocked behind the same function contracts a real integration would use (fetch_employee_docs/1, create_employee_folder/1, upload_file/2, etc.) — Box is simulated as local folders under box_storage/, and Rippling is simulated with realistic mock data. Swapping in real API calls later would mean rewriting the inside of these functions, not anything that calls them.
 
-## Project structure
-
-rippling_box_sync/
-├── employees.csv              # sample employee data (associate_id, first_name, last_name, department)
-├── lib/
-│   ├── employee.ex            # %Employee{} struct — fixed internal contract for employee data
-│   ├── csv_parser.ex          # parses employees.csv into %Employee{} structs
-│   ├── rippling.ex            # mocked Rippling API — fetch_employee_docs/1
-│   ├── box.ex                 # mocked Box API — folder creation, file upload, retry folder
-│   ├── phase_one/
-│   │   └── sync.ex            # orchestrates fetch → folder → upload, with retry routing
-│   ├── phase_two/
-│   │   ├── keywords.ex        # configurable I-9 keyword list
-│   │   ├── scanner.ex         # scores a document's I-9 relevance via keyword matching
-│   │   └── sort.ex            # (in progress) moves I-9-related docs into a review folder
-│   └── mix/
-│       └── tasks/
-│           └── sync.ex        # `mix sync` — runs Phase 1
-└── box_storage/                # local stand-in for Box (created at runtime)
-    └── _retry/                # employees whose sync failed land here
-
 ## Usage
 
 mix deps.get
