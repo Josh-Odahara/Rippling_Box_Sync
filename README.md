@@ -57,11 +57,11 @@ Sort.sort_employee/1 reads each file directly off disk (via File.ls/1 and File.r
 
 ## Known limitations
 
-- Keyword matching is exact-substring after downcasing — it does not handle typos, abbreviations, or synonyms. A misspelled keyword (or a misspelled document) will silently fail to match with no error. (This bit us once already during development — a typo in the keyword list silently dropped a match until it was traced down.)
+- Keyword matching is exact-substring after downcasing — it does not handle typos, abbreviations, or synonyms. A misspelled keyword (or a misspelled document) will silently fail to match with no error.
 - The score ≥ 3 threshold in Scanner.i9_related?/1 is a placeholder based on mock data, not real-world calibration. It should be revisited once real document content (e.g. via PDF parsing) is available to test against.
-- Document content is mock plain text, not real file contents. There is no PDF parsing yet — a real implementation would need a PDF text-extraction library to scan actual uploaded documents.
+- Document content is mock plain text, not real file contents. There is no PDF parsing yet, a real implementation would need a PDF text-extraction library to scan actual uploaded documents.
 - The "missing first or last name" condition in fetch_employee_docs/1 is the only simulated sync failure case. A real Rippling integration could fail in other ways (network errors, employee not found, API rate limits) that aren't modeled here.
-- Sort.sort_employee/1 has no retry-folder mechanism of its own — a missing employee folder is logged and skipped, not routed anywhere for follow-up the way Phase 1 failures are.
+- Sort.sort_employee/1 has no retry-folder mechanism of its own. A missing employee folder is logged and skipped, not routed anywhere for follow-up the way Phase 1 failures are.
 - box_storage/ is a local filesystem stand-in for Box. No real Box API integration exists yet.
 
 
